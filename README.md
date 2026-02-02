@@ -23,14 +23,28 @@ Then open [http://localhost:5173](http://localhost:5173).
 
 ## Deploy til GitHub Pages
 
+**Viktig:** GitHub Pages må servere den **bygde** appen fra **gh-pages**-branchen, ikke kildekoden fra main.
+
+### Alternativ 1: Automatisk deploy (anbefalt)
+Push til `main` – GitHub Actions bygger og pusher til `gh-pages` automatisk.
+
+### Alternativ 2: Manuell deploy
 ```bash
 npm install
 npm run deploy
 ```
 
-**Live:** [https://jugadboparai.github.io/Angela-3/](https://jugadboparai.github.io/Angela-3/)
+### GitHub Pages-innstillinger
+1. **Settings → Pages**
+2. **Source:** Deploy from a branch
+3. **Branch:** `gh-pages` | **Folder:** `/ (root)`
+4. Lagre
 
-Sørg for at repoet har **Settings → Pages → Source: Deploy from a branch** med branch **gh-pages** og mappe **/ (root)**.
+### Riktig URL
+Åpne **https://jugadboparai.github.io/Angela-3/** (med `/Angela-3/` og avsluttende `/`).  
+Hvis du åpner `jugadboparai.github.io` uten `/Angela-3/`, får du feil side eller 404.
+
+**Live:** [https://jugadboparai.github.io/Angela-3/](https://jugadboparai.github.io/Angela-3/)
 
 ## Customization
 

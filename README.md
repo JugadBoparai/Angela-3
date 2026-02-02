@@ -40,6 +40,8 @@ npm run deploy
 3. **Branch:** `gh-pages` | **Folder:** `/ (root)`
 4. Lagre
 
+Hvis workflowen feiler: **Settings → Actions → General → Workflow permissions** → velg **Read and write permissions**, lagre.
+
 ### Riktig URL
 Åpne **https://jugadboparai.github.io/Angela-3/** (med `/Angela-3/` og avsluttende `/`).  
 Hvis du åpner `jugadboparai.github.io` uten `/Angela-3/`, får du feil side eller 404.

@@ -23,21 +23,15 @@ Then open [http://localhost:5173](http://localhost:5173).
 
 ## Deploy til GitHub Pages
 
-**Viktig:** GitHub Pages må servere den **bygde** appen fra **gh-pages**-branchen, ikke kildekoden fra main.
+**Alt på én branch (main):** kildekode og bygget nettside i mappen `docs/`.
 
-### Alternativ 1: Automatisk deploy (anbefalt)
-Push til `main` – GitHub Actions bygger og pusher til `gh-pages` automatisk.
-
-### Alternativ 2: Manuell deploy
-```bash
-npm install
-npm run deploy
-```
+### Automatisk deploy
+Push til `main` – GitHub Actions bygger og legger bygget i `docs/` på main.
 
 ### GitHub Pages-innstillinger
 1. **Settings → Pages**
 2. **Source:** Deploy from a branch
-3. **Branch:** `gh-pages` | **Folder:** `/ (root)`
+3. **Branch:** `main` | **Folder:** `/docs`
 4. Lagre
 
 Hvis workflowen feiler: **Settings → Actions → General → Workflow permissions** → velg **Read and write permissions**, lagre.
@@ -47,6 +41,26 @@ Hvis workflowen feiler: **Settings → Actions → General → Workflow permissi
 Hvis du åpner `jugadboparai.github.io` uten `/Angela-3/`, får du feil side eller 404.
 
 **Live:** [https://jugadboparai.github.io/Angela-3/](https://jugadboparai.github.io/Angela-3/)
+
+### Hvis du får 404 (Failed to load resource)
+
+**Hva betyr det?**  
+Nettleseren ber om en fil (JS, bilde, musikk, favicon), men serveren svarer at den ikke finnes (404 Not Found).
+
+**Finn hvilken fil som feiler**
+1. Åpne siden på https://jugadboparai.github.io/Angela-3/
+2. **F12** (eller høyreklikk → Inspiser) → **Network**-fanen
+3. Oppdater siden (F5)
+4. Klikk på **Status** for å sortere – de som er **404** er de som feiler
+5. Klikk på den røde linjen – **Request URL** viser nøyaktig hvilken adresse som ga 404
+
+**Vanlige årsaker og løsninger**
+
+| Hvis URL er … | Årsak | Løsning |
+|---------------|--------|---------|
+| `.../src/main.jsx` | Feil side serveres (kildekode i stedet for bygget) | Sjekk at GitHub Pages bruker **gh-pages**-branchen, ikke main. Åpne **https://jugadboparai.github.io/Angela-3/** (med `/Angela-3/`). |
+| `.../Angela-3/IMG_0628.jpeg` eller `.../love-song.mp3` | Fil mangler på gh-pages | Kjør `npm run deploy` på nytt, eller push til main slik at workflowen deployer. Sjekk at `public/IMG_0628.jpeg` og `public/love-song.mp3` finnes og er committet. |
+| Gammel/cachet side | Nettleseren bruker gammel versjon | **Hard refresh:** Ctrl+Shift+R (Windows) eller Cmd+Shift+R (Mac). |
 
 ## Customization
 

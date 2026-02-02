@@ -2,6 +2,8 @@
 
 A cinematic single-page Valentine interactive game built with React, Tailwind CSS, and Framer Motion.
 
+**Homepage:** [https://jugadboparai.github.io/Angela-3/](https://jugadboparai.github.io/Angela-3/)
+
 ## Features
 
 - **Intro Screen**: Playful Yes/No Valentine question with escalating messages when "No" is clicked
@@ -18,6 +20,17 @@ npm run dev
 ```
 
 Then open [http://localhost:5173](http://localhost:5173).
+
+## Deploy til GitHub Pages
+
+```bash
+npm install
+npm run deploy
+```
+
+**Live:** [https://jugadboparai.github.io/Angela-3/](https://jugadboparai.github.io/Angela-3/)
+
+Sørg for at repoet har **Settings → Pages → Source: Deploy from a branch** med branch **gh-pages** og mappe **/ (root)**.
 
 ## Customization
 

@@ -11,9 +11,10 @@ const LOVE_LETTER = [
   '– Jugad',
 ]
 
-// Image and music from public folder
-const PHOTO_PATH = '/IMG_0628.jpeg'
-const LOVE_SONG_URL = '/' + encodeURIComponent('Dilawara - Acoustic  The PropheC  Ezu  Latest Punjabi Song.mp3')
+// Image and music from public folder (BASE_URL for GitHub Pages)
+const BASE = import.meta.env.BASE_URL
+const PHOTO_PATH = BASE + 'IMG_0628.jpeg'
+const LOVE_SONG_URL = BASE + encodeURIComponent('Dilawara - Acoustic  The PropheC  Ezu  Latest Punjabi Song.mp3')
 
 function burstConfetti() {
   const count = 200

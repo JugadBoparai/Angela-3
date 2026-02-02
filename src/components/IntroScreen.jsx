@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 export default function IntroScreen({ noMessage, onYes, onNo }) {
+  const [noPosition, setNoPosition] = useState({ x: 0, y: 0 })
   return (
     <motion.div
       key="intro"
@@ -55,10 +57,14 @@ export default function IntroScreen({ noMessage, onYes, onNo }) {
         </motion.button>
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          onMouseEnter={() => {
+            setNoPosition({ x: Math.random() * 80 - 40, y: Math.random() * 60 - 30 })
+          }}
+          animate={{ x: noPosition.x, y: noPosition.y }}
+          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           whileTap={{ scale: 0.95 }}
           onClick={onNo}
-          className="px-8 py-4 rounded-2xl bg-white/80 text-rose-600 text-lg font-semibold border-2 border-rose-300 hover:border-rose-400 shadow-md hover:shadow-lg transition-all"
+          className="px-8 py-4 rounded-2xl bg-white/80 text-rose-600 text-lg font-semibold border-2 border-rose-300 hover:border-rose-400 shadow-md hover:shadow-lg transition-all relative z-10"
         >
           No 💔
         </motion.button>

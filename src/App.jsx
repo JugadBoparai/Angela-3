@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import confetti from 'canvas-confetti'
+import { AnimatePresence } from 'framer-motion'
 import ProgressBar from './components/ProgressBar'
 import IntroScreen from './components/IntroScreen'
+import YesCelebrationScreen from './components/YesCelebrationScreen'
 import GiftScreen from './components/GiftScreen'
 import FinalScreen from './components/FinalScreen'
 
@@ -24,12 +24,17 @@ function App() {
   const getProgress = () => {
     if (currentScreen === 0) return 0
     if (currentScreen === 1) return 33
-    if (currentScreen === 2 && !letterComplete) return 66
+    if (currentScreen === 2) return 66
+    if (currentScreen === 3 && !letterComplete) return 66
     return 100
   }
 
   const handleYes = () => {
     setCurrentScreen(1)
+  }
+
+  const handleContinue = () => {
+    setCurrentScreen(2)
   }
 
   const handleNo = () => {
@@ -42,7 +47,17 @@ function App() {
 
   const handleGiftSelect = (gift) => {
     setSelectedGift(gift)
-    setCurrentScreen(2)
+    setCurrentScreen(3)
+  }
+
+  const handleBack = () => {
+    if (currentScreen === 1) setCurrentScreen(0)
+    if (currentScreen === 2) setCurrentScreen(1)
+    if (currentScreen === 3) {
+      setSelectedGift(null)
+      setLetterComplete(false)
+      setCurrentScreen(2)
+    }
   }
 
   return (
@@ -59,16 +74,25 @@ function App() {
           />
         )}
         {currentScreen === 1 && (
-          <GiftScreen
-            key="gift"
-            onSelect={handleGiftSelect}
+          <YesCelebrationScreen
+            key="yes"
+            onContinue={handleContinue}
+            onBack={handleBack}
           />
         )}
         {currentScreen === 2 && (
+          <GiftScreen
+            key="gift"
+            onSelect={handleGiftSelect}
+            onBack={handleBack}
+          />
+        )}
+        {currentScreen === 3 && (
           <FinalScreen
             key="final"
             selectedGift={selectedGift}
             onLetterComplete={() => setLetterComplete(true)}
+            onBack={handleBack}
           />
         )}
       </AnimatePresence>
